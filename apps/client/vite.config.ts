@@ -17,10 +17,17 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@shared': fileURLToPath(new URL('../../packages/shared/src', import.meta.url))
       },
-    },  
+    },
     server: {
       port: 5173,
+      proxy: {
+        '/api': {
+          target: env.VITE_API_URL || 'http://localhost:3000',
+          changeOrigin: true,
+        },
+      },
     },
     // Ensure environment variables are properly exposed
     define: {

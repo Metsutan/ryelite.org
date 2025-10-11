@@ -1,4 +1,4 @@
-# HighLite Website
+# RyeLite Website
 
 A modern web application with a Vue.js frontend, Node.js backend, and RSS feed generator for HighSpell news.
 

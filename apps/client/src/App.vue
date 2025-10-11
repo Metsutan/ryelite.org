@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+import { RouterLink, RouterView } from 'vue-router'
+import UserMenu from '@/components/UserMenu.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+</script>
 
 <template>
   <header>
@@ -8,6 +15,14 @@
     <nav>
       <RouterLink to="/" class="navItem">Home</RouterLink>
       <RouterLink to="/map" class="navItem">Map</RouterLink>
+      <RouterLink to="/marketplace" class="navItem">Marketplace</RouterLink>
+      <RouterLink 
+        v-if="authStore.isAdmin" 
+        to="/admin" 
+        class="navItem admin-link"
+      >
+        Admin
+      </RouterLink>
     </nav>
     <UserMenu />
   </header>
@@ -21,7 +36,11 @@
     <span>Made with ❤️ by the Highlite Team</span>
   </div>
 
-  <!-- Discord & Marketplace removed -->
+  <div class="joinUs">
+    <a href="https://discord.gg/highspell" target="_blank">
+      <button>Join us on <Icon icon="simple-icons:discord" /></button>
+    </a>
+  </div>
 </template>
 
 <style scoped>

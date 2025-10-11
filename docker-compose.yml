@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=./storage/database.sqlite
+    env_file:
+      - .env
+    volumes:
+      - ./storage/:/app/apps/server/storage:Z
+      - ./apps/server/config:/app/server/config:Z
+      - client-dist:/app/client-dist:Z
+    restart: unless-stopped
+    networks:
+      - web
+
+  rss-generator:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    command: /start-rss.sh
+    restart: unless-stopped
+    networks:
+      - web
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:Z
+      - ./nginx/conf.d:/etc/nginx/conf.d:Z
+      - ./ssl:/etc/ssl/certs:Z
+      - client-dist:/usr/share/nginx/html:Z
+    depends_on:
+      app:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  client-dist:

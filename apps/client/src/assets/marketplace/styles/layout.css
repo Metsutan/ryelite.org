@@ -1,0 +1,185 @@
+/* ===== HEADER AND LAYOUT COMPONENTS ===== */
+
+/* Main container */
+.marketplace-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--theme-text-primary);
+}
+
+/* Header section */
+.marketplace-header {
+  background: linear-gradient(135deg, var(--theme-background-soft) 0%, var(--theme-background-mute) 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.title-section h1 {
+  color: var(--theme-accent);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 2.5rem;
+}
+
+.title-icon {
+  font-size: 2.5rem;
+}
+
+.title-section p {
+  color: var(--theme-text-secondary);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.header-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--theme-text-secondary);
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--theme-background);
+  border-radius: 8px;
+  border: 1px solid var(--theme-border);
+}
+
+/* Header stats pulse animation - now uses utility class */
+.stat.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Section headers */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  color: var(--theme-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--theme-text-secondary);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--theme-text-muted);
+}
+
+.empty-state h3 {
+  color: var(--theme-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Listings section */
+.listings-section {
+  margin-bottom: 2rem;
+}
+
+/* Pending trades section */
+.pending-trades-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--theme-background-soft) 0%, var(--theme-background-mute) 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .header-stats {
+    gap: 1rem;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .marketplace-container {
+    padding: 1rem;
+  }
+  
+  .marketplace-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .title-section h1 {
+    font-size: 2rem;
+  }
+  
+  .header-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  
+  .stat {
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketplace-container {
+    padding: 0.75rem;
+  }
+  
+  .marketplace-header {
+    padding: 1rem;
+  }
+  
+  .title-section h1 {
+    font-size: 1.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .title-icon {
+    font-size: 2rem;
+  }
+}
