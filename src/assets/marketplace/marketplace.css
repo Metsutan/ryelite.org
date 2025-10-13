@@ -1,0 +1,40 @@
+/* ===== MARKETPLACE MAIN STYLESHEET ===== */
+/* This file imports all the marketplace sub-stylesheets */
+
+/* Import all marketplace sub-stylesheets */
+@import './styles/utilities.css';
+@import './styles/animations.css';
+@import './styles/buttons.css';
+@import './styles/layout.css';
+@import './styles/filters.css';
+@import './styles/listing-cards.css';
+@import './styles/listing-content.css';
+@import './styles/tags.css';
+@import './styles/modals.css';
+@import './styles/offers-trades.css';
+
+/* 
+This main CSS file now imports all the organized sub-stylesheets:
+
+1. utilities.css - CSS variables, theme support, accessibility, utility classes, and common gradients
+2. animations.css - Consolidated keyframe animations, transitions, and animation utilities
+3. buttons.css - Complete button system with all variants and states
+4. layout.css - Main container, headers, sections, and layout components
+5. filters.css - Search, filters, and filter bar components
+6. listing-cards.css - Listing card grid, hover effects, and card interactions
+7. listing-content.css - Listing item details, seller info, and card content
+8. tags.css - Tag chip system and badge components
+9. modals.css - Modal overlays, forms, and modal-specific components
+10. offers-trades.css - Offers system and pending trades functionality
+
+Changes made during optimization:
+- Consolidated all animations and keyframes into animations.css
+- Removed duplicate animation definitions across files
+- Added common gradient utility classes to utilities.css to reduce repetition
+- Centralized reduced motion preferences handling in animations.css
+- Improved performance with proper will-change properties
+- Maintained accessibility and responsive design features
+
+Each file is focused on a specific aspect of the marketplace UI,
+making it easier to maintain and update individual components.
+*/

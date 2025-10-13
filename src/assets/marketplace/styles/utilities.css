@@ -1,0 +1,340 @@
+/* ===== COMMON GRADIENT UTILITIES ===== */
+
+/* Background gradients */
+.bg-gradient-soft {
+  background: linear-gradient(135deg, var(--theme-background-soft) 0%, var(--theme-background-mute) 100%);
+}
+
+.bg-gradient-muted {
+  background: linear-gradient(135deg, var(--theme-background) 0%, var(--theme-background-mute) 100%);
+}
+
+.bg-gradient-light {
+  background: linear-gradient(135deg, var(--theme-background-light) 0%, var(--theme-background) 100%);
+}
+
+.bg-gradient-card {
+  background: linear-gradient(145deg, var(--theme-background-soft) 0%, var(--theme-background-mute) 100%);
+}
+
+/* Accent gradients */
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--theme-accent) 0%, var(--theme-accent-dark) 100%);
+}
+
+.bg-gradient-accent-hover {
+  background: linear-gradient(135deg, var(--theme-accent-light) 0%, var(--theme-accent) 100%);
+}
+
+.bg-gradient-accent-subtle {
+  background: linear-gradient(135deg, var(--theme-accent-transparent-5) 0%, var(--theme-accent-transparent-10) 100%);
+}
+
+/* Status gradients */
+.bg-gradient-success {
+  background: linear-gradient(135deg, var(--theme-success) 0%, var(--theme-success-dark) 100%);
+}
+
+.bg-gradient-success-hover {
+  background: linear-gradient(135deg, var(--theme-success-light) 0%, var(--theme-success) 100%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(135deg, var(--theme-danger) 0%, var(--theme-danger-dark) 100%);
+}
+
+.bg-gradient-danger-hover {
+  background: linear-gradient(135deg, var(--theme-danger-light) 0%, var(--theme-danger) 100%);
+}
+
+/* ===== COMMON BORDER UTILITIES ===== */
+
+.border-accent {
+  border: 1px solid var(--theme-accent-transparent-40);
+}
+
+.border-subtle {
+  border: 1px solid var(--theme-border);
+}
+
+/* ===== COMMON SHADOW UTILITIES ===== */
+
+.shadow-card {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-card-hover {
+  box-shadow: 
+    0 20px 40px -8px rgba(0, 0, 0, 0.2),
+    0 8px 16px -4px rgba(0, 0, 0, 0.1),
+    0 0 0 1px var(--theme-accent-transparent-20),
+    0 0 20px var(--theme-accent-transparent-15);
+}
+
+.shadow-accent {
+  box-shadow: 0 4px 12px var(--theme-accent-transparent-30);
+}
+
+.shadow-success {
+  box-shadow: 0 4px 12px var(--theme-success-transparent-30);
+}
+
+.shadow-danger {
+  box-shadow: 0 4px 12px var(--theme-danger-transparent-30);
+}
+
+/* ===== COMMON SPACING UTILITIES ===== */
+
+.spacing-section {
+  margin-bottom: 2rem;
+}
+
+.spacing-element {
+  margin-bottom: 1rem;
+}
+
+.spacing-small {
+  margin-bottom: 0.5rem;
+}
+
+.padding-container {
+  padding: 1.5rem;
+}
+
+.padding-card {
+  padding: 2rem;
+}
+
+/* ===== FEEDBACK AND UTILITY COMPONENTS ===== */
+
+/* Feedback Toast System */
+.feedback-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.feedback-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+}
+
+.feedback-toast.success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.feedback-toast.error {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+}
+
+.feedback-toast.info {
+  background: linear-gradient(135deg, #17a2b8 0%, #007bff 100%);
+}
+
+/* Feedback transition animations moved to animations.css */
+
+/* Utility classes */
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Performance optimizations moved to animations.css */
+
+/* CSS variables for theme support */
+:root {
+  /* Theme colors would be defined here or inherited from parent */
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #6b7280;
+  --theme-text-muted: #9ca3af;
+  --theme-text-dark: #ffffff;
+  
+  --theme-background: #ffffff;
+  --theme-background-soft: #f9fafb;
+  --theme-background-mute: #f3f4f6;
+  --theme-background-light: #ffffff;
+  
+  --theme-border: #e5e7eb;
+  
+  --theme-accent: #3b82f6;
+  --theme-accent-light: #60a5fa;
+  --theme-accent-dark: #2563eb;
+  --theme-accent-soft: #dbeafe;
+  
+  --theme-success: #10b981;
+  --theme-success-light: #34d399;
+  --theme-success-dark: #059669;
+  
+  --theme-danger: #ef4444;
+  --theme-danger-light: #f87171;
+  --theme-danger-dark: #dc2626;
+  
+  --theme-warning: #f59e0b;
+  --theme-warning-light: #fbbf24;
+  --theme-warning-dark: #d97706;
+  
+  /* Transparent color variations */
+  --theme-accent-transparent-5: rgba(59, 130, 246, 0.05);
+  --theme-accent-transparent-8: rgba(59, 130, 246, 0.08);
+  --theme-accent-transparent-10: rgba(59, 130, 246, 0.1);
+  --theme-accent-transparent-15: rgba(59, 130, 246, 0.15);
+  --theme-accent-transparent-20: rgba(59, 130, 246, 0.2);
+  --theme-accent-transparent-25: rgba(59, 130, 246, 0.25);
+  --theme-accent-transparent-30: rgba(59, 130, 246, 0.3);
+  --theme-accent-transparent-40: rgba(59, 130, 246, 0.4);
+  --theme-accent-transparent-50: rgba(59, 130, 246, 0.5);
+  
+  --theme-success-transparent-30: rgba(16, 185, 129, 0.3);
+  --theme-danger-transparent-30: rgba(239, 68, 68, 0.3);
+  --theme-warning-transparent-10: rgba(245, 158, 11, 0.1);
+  
+  /* Surface colors for modals and forms */
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f9fafb;
+  --theme-surface-dark: #1f2937;
+  --theme-surface-hover-dark: #374151;
+  --theme-border-dark: #4b5563;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-text-primary: #f9fafb;
+    --theme-text-secondary: #d1d5db;
+    --theme-text-muted: #9ca3af;
+    --theme-text-dark: #1f2937;
+    
+    --theme-background: #1f2937;
+    --theme-background-soft: #374151;
+    --theme-background-mute: #4b5563;
+    --theme-background-light: #6b7280;
+    
+    --theme-border: #4b5563;
+    
+    --theme-surface: #374151;
+    --theme-surface-hover: #4b5563;
+  }
+}
+
+/* Accessibility improvements - reduced motion handled in animations.css */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .listing-card {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border-width: 2px;
+  }
+  
+  .tag-chip {
+    border-width: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .feedback-container,
+  .modal-overlay,
+  .listing-actions,
+  .filters-bar {
+    display: none !important;
+  }
+  
+  .listing-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .marketplace-container {
+    max-width: none;
+    padding: 0;
+  }
+}
+
+/* Focus management for keyboard navigation */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--theme-accent);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection colors */
+::selection {
+  background-color: var(--theme-accent-transparent-30);
+  color: var(--theme-text-primary);
+}
+
+::-moz-selection {
+  background-color: var(--theme-accent-transparent-30);
+  color: var(--theme-text-primary);
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-background-mute);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-accent-transparent-40);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent-transparent-50);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-accent-transparent-40) var(--theme-background-mute);
+}

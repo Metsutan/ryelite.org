@@ -1,0 +1,458 @@
+/* ===== CONSISTENT BUTTON SYSTEM ===== */
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  min-height: 44px; /* Touch-friendly minimum */
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Primary button (accent color) */
+.btn-primary {
+  background: linear-gradient(135deg, var(--theme-accent) 0%, var(--theme-accent-dark) 100%);
+  color: var(--theme-text-dark);
+  box-shadow: 0 4px 12px var(--theme-accent-transparent-30);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--theme-accent-light) 0%, var(--theme-accent) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--theme-accent-transparent-40);
+}
+
+/* Secondary button (theme background) */
+.btn-secondary {
+  background: linear-gradient(135deg, var(--theme-background-mute) 0%, var(--theme-background-light) 100%);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--theme-background-light) 0%, var(--theme-background) 100%);
+  border-color: var(--theme-accent-transparent-40);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Success button (green) */
+.btn-success {
+  background: linear-gradient(135deg, var(--theme-success) 0%, var(--theme-success-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 12px var(--theme-success-transparent-30);
+}
+
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--theme-success-light) 0%, var(--theme-success) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--theme-success-transparent-30);
+}
+
+/* Danger button (red) */
+.btn-danger {
+  background: linear-gradient(135deg, var(--theme-danger) 0%, var(--theme-danger-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 12px var(--theme-danger-transparent-30);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--theme-danger-light) 0%, var(--theme-danger) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--theme-danger-transparent-30);
+}
+
+/* Ghost button (transparent) */
+.btn-ghost {
+  background: transparent;
+  color: var(--theme-text-secondary);
+  border: 1px solid var(--theme-border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--theme-background-mute);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-accent-transparent-40);
+}
+
+/* Size variants */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 12px;
+  min-height: 36px;
+}
+
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 16px;
+  min-height: 52px;
+}
+
+/* Full width button */
+.btn-block {
+  width: 100%;
+}
+
+/* Icon-only button */
+.btn-icon {
+  padding: 12px;
+  min-width: 44px;
+}
+
+/* Button spacing utilities */
+.btn-spaced {
+  margin-top: 1rem;
+}
+
+/* Disabled button style */
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Action buttons for specific contexts */
+.remove-item-btn,
+.add-item-btn {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.remove-item-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.remove-item-btn:hover {
+  background-color: #c82333;
+}
+
+.add-item-btn {
+  background-color: var(--theme-accent);
+  color: var(--theme-text-dark);
+  margin-top: 0.5rem;
+}
+
+.add-item-btn:hover {
+  background-color: var(--theme-accent-dark);
+}
+
+/* Toggle buttons */
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 12px;
+  background-color: var(--theme-background);
+  border: 1px solid var(--theme-border);
+  border-radius: 6px;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: var(--theme-background-light);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-accent-transparent-40);
+}
+
+.toggle-btn.active {
+  background-color: var(--theme-accent);
+  color: var(--theme-text-dark);
+  border-color: var(--theme-accent);
+  font-weight: 600;
+}
+
+/* Toggle buttons group container */
+.toggle-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--theme-background-soft);
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+/* Enhanced toggle buttons for trade options */
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--theme-background);
+  border: 2px solid var(--theme-border);
+  border-radius: 10px;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+}
+
+.toggle-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, var(--theme-accent-transparent-05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.toggle-btn:hover {
+  background: var(--theme-background-light);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-accent-transparent-40);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.toggle-btn:hover::before {
+  opacity: 1;
+}
+
+.toggle-btn .iconify {
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+  position: relative;
+  color: inherit;
+}
+
+.toggle-btn span {
+  z-index: 1;
+  position: relative;
+  line-height: 1.4;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--theme-accent-transparent-10) 0%, var(--theme-accent-transparent-20) 100%);
+  color: var(--theme-accent);
+  border-color: var(--theme-accent);
+  font-weight: 600;
+  box-shadow: 0 4px 20px var(--theme-accent-transparent-20);
+  transform: translateY(-1px);
+  animation: toggle-activate 0.3s ease-out;
+}
+
+.toggle-btn.active::before {
+  opacity: 1;
+  background: linear-gradient(135deg, var(--theme-accent-transparent-10) 0%, var(--theme-accent-transparent-20) 100%);
+}
+
+.toggle-btn.active .iconify {
+  color: var(--theme-accent);
+  transform: scale(1.1);
+  animation: icon-bounce 0.3s ease-out;
+}
+
+/* Specific styling for different trade options */
+.toggle-btn:has(.iconify[data-icon*="swap"]).active {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.2) 100%);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+.toggle-btn:has(.iconify[data-icon*="swap"]).active .iconify {
+  color: #8b5cf6;
+}
+
+.toggle-btn:has(.iconify[data-icon*="chart"]).active {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.2) 100%);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+}
+
+.toggle-btn:has(.iconify[data-icon*="chart"]).active .iconify {
+  color: #f59e0b;
+}
+
+/* Enhanced accessibility for toggle buttons */
+.toggle-buttons-group:focus-within {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Keyboard navigation improvements */
+.toggle-btn:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .toggle-btn,
+  .toggle-btn.active,
+  .toggle-btn.active .iconify {
+    animation: none;
+  }
+  
+  .toggle-btn:hover,
+  .toggle-btn.active {
+    transform: none;
+  }
+  
+  .toggle-btn.active .iconify {
+    transform: scale(1.1);
+  }
+}
+
+/* Loading state for toggle buttons */
+.toggle-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.toggle-btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--theme-accent-transparent-10) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Focus states for accessibility */
+.toggle-btn:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.toggle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.toggle-btn:disabled:hover {
+  background: var(--theme-background);
+  color: var(--theme-text-secondary);
+  border-color: var(--theme-border);
+}
+
+/* Clear button */
+.clear-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--theme-background-mute);
+  color: var(--theme-text-secondary);
+  border: 1px solid var(--theme-border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.clear-all-btn:hover {
+  background-color: var(--theme-background-light);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-accent-transparent-40);
+}
+
+/* Clear search button */
+.clear-search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.clear-search-btn:hover {
+  background-color: var(--theme-background-mute);
+  color: var(--theme-text-primary);
+}
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  font-size: 24px;
+  padding: 4px;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: var(--theme-text-primary);
+}
+
+/* Quick filters button */
+.quick-filters-btn {
+  background-color: var(--theme-background-mute);
+  color: var(--theme-text-secondary);
+  border: 1px solid var(--theme-border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.quick-filters-btn:hover,
+.quick-filters-btn.active {
+  background-color: var(--theme-accent);
+  color: var(--theme-text-dark);
+  border-color: var(--theme-accent);
+}
