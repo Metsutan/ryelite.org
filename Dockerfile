@@ -29,7 +29,7 @@ COPY .env ./.env
 
 # Set environment variables for the build
 ENV NODE_ENV=production
-ENV VITE_API_URL=https://www.highlite.dev
+ENV VITE_API_URL=https://www.ryelite.org
 
 # Build all packages
 RUN yarn workspace @highlite/shared build

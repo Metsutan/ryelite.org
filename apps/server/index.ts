@@ -60,8 +60,8 @@ app.use(cors({
     
     const allowedOrigins = [
       'http://localhost:5173',
-      'https://highlite.dev',
-      'https://www.highlite.dev',
+      'https://ryelite.org',
+      'https://www.ryelite.org',
       process.env.FRONTEND_URL
     ].filter(Boolean);
     
