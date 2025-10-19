@@ -60,6 +60,7 @@
     { "name": "Ictirine Sewers", "x": 30, "y": 190, "labelType": 0 },
     { "name": "Celadon Dungeon", "x": 360, "y": 15, "labelType": 0 },
     { "name": "Plains Dragons", "x": 360, "y": 55, "labelType": 0 },
-    { "name": "Undercroft", "x": 430, "y": -105, "labelType": 0 }
+    { "name": "Undercroft", "x": 430, "y": -105, "labelType": 0 },
+    { "name": "Celadon Highlands", "x": 413, "y": 193, "labelType": 1}
   ]
 }
