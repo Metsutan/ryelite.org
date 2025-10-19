@@ -699,10 +699,12 @@ onMounted(() => {
       })
     }
 
+    const mapBaseUrl = 'https://highspell.com:8887/static/assets/heightmaps'
+
     // Add base layers
-    addBaseLayer('overworld', '/mapImages/earthoverworldtexture.png', '/mapImages/earthoverworldmap.png')
-    addBaseLayer('underworld', '/mapImages/earthundergroundtexture.png', '/mapImages/earthundergroundmap.png')
-    addBaseLayer('sky', '/mapImages/earthskytexture.png', '/mapImages/earthskymap.png')
+    addBaseLayer('overworld', `${mapBaseUrl}/earthoverworldtexture.png`, `${mapBaseUrl}/earthoverworldmap.png`)
+    addBaseLayer('underworld', `${mapBaseUrl}/earthundergroundtexture.png`, `${mapBaseUrl}/earthundergroundmap.png`)
+    addBaseLayer('sky', `${mapBaseUrl}/earthskytexture.png`, `${mapBaseUrl}/earthskymap.png`)
 
     // Set initial layer visibility
     const setLayerVisibility = (level: string, visible: boolean) => {
