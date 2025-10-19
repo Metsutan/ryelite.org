@@ -5,14 +5,22 @@ import MapControls from '@/components/map/MapControls.vue'
 import MapPositionIndicator from '@/components/map/MapPositionIndicator.vue'
 import MapPopup from '@/components/map/MapPopup.vue'
 import locations from '@/assets/map/Locations.json'
-import entitiesData from '@/assets/map/worldEntities.json'
 import npcs from '@/assets/map/NPCs.json'
-import npcDefinitions from '@/assets/map/NPCDefs.json'
+import { useGameData } from '@/composables/useGameData'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 // MapLibre map instance
 let map: maplibregl.Map
+
+// Game data
+const { npcDefinitions, entitiesData, isLoading: dataLoading } = useGameData()
+
+watch(dataLoading, (loading) => {
+  if (loading) {
+    isLoading.value = true
+  }
+})
 
 // Data storage for markers
 const levelMarkers: Record<string, Record<string, any[]>> = {
@@ -789,23 +797,6 @@ onMounted(() => {
       }
     }
 
-    // Add location markers
-    locations.locations.forEach((location: any) => {
-      const feature = createLocationLabelFeature([location.x + 512.5, location.y + 512.5], location.name)
-      
-      switch (location.labelType) {
-        case 0:
-          addLocationItem(feature, 'Underworld', 'Locations')
-          break
-        case 1:
-          addLocationItem(feature, 'Overworld', 'Locations')
-          break
-        case 2:
-          addLocationItem(feature, 'Sky', 'Locations')
-          break
-      }
-    })
-
     // Entity type mapping configuration for cleaner code
     const entityTypeConfig = [
       {
@@ -953,24 +944,6 @@ onMounted(() => {
       }
     }
 
-    // Process entities with the new streamlined approach
-    const worldEntities = (entitiesData as any).worldEntities || []
-    worldEntities.forEach((entity: any) => {
-      // Find matching configuration for this entity type
-      const config = entityTypeConfig.find(cfg => cfg.match(entity.type))
-      
-      if (config) {
-        const name = config.nameFormatter(entity.type)
-        const feature = createMarkerFeature(
-          [entity.x + 512.5, entity.z + 512.5], 
-          config.icon, 
-          name, 
-          config.category
-        )
-        addEntityToLayer(feature, entity.lvl, config.category)
-      }
-    })
-
     // NPC type configuration for cleaner processing
     const npcTypeConfig = [
       {
@@ -1036,28 +1009,6 @@ onMounted(() => {
         addItem(feature, layerName, category)
       }
     }
-
-    // Process NPCs with streamlined approach
-    npcs.npcs.forEach((npc: any) => {
-      const npcDef = npcDefinitions.npcDefs.find((def: any) => npc.npcdef_id === def._id) as any
-      if (!npcDef) return
-
-      // Find the first matching configuration (order matters - more specific conditions first)
-      const config = npcTypeConfig.find(cfg => cfg.condition(npc, npcDef))
-      
-      if (config) {
-        const name = config.nameFormatter(npcDef)
-        if (name) { // Only create marker if name is valid
-          const feature = createMarkerFeature(
-            [npc.x + 512.5, npc.y + 512.5], 
-            config.icon, 
-            name, 
-            config.category
-          )
-          addNPCToLayer(feature, npc.mapLevel, config.category)
-        }
-      }
-    })
 
     // Handle URL params for initial view/marker with coordinate conversion
     const urlParams = new URLSearchParams(window.location.search)
@@ -1278,6 +1229,75 @@ onMounted(() => {
       // Ensure map is properly sized
       map.resize()
     }, 500)
+
+    watch([entitiesData, npcDefinitions], ([newEntities, newDefs]) => {
+      if (!newEntities || !newDefs) {
+        return;
+      }
+      Object.keys(levelMarkers).forEach(layer => {
+        levelMarkers[layer] = {};
+      });
+
+      // Add location markers
+      locations.locations.forEach((location: any) => {
+        const feature = createLocationLabelFeature([location.x + 512.5, location.y + 512.5], location.name)
+        
+        switch (location.labelType) {
+          case 0:
+            addLocationItem(feature, 'Underworld', 'Locations')
+            break
+          case 1:
+            addLocationItem(feature, 'Overworld', 'Locations')
+            break
+          case 2:
+            addLocationItem(feature, 'Sky', 'Locations')
+            break
+        }
+      })
+
+      const worldEntities = (newEntities as any) || [];
+      worldEntities.forEach((entity: any) => {
+        const config = entityTypeConfig.find(cfg => cfg.match(entity.type));
+        if (config) {
+          const name = config.nameFormatter(entity.type);
+          const feature = createMarkerFeature(
+            [entity.x + 512.5, entity.z + 512.5],
+            config.icon,
+            name,
+            config.category
+          );
+          addEntityToLayer(feature, entity.lvl, config.category);
+        }
+      });
+
+      npcs.npcs.forEach((npc: any) => {
+        const npcDef = newDefs.find((def: any) => npc.npcdef_id === def._id) as any;
+        if (!npcDef) return;
+
+        const config = npcTypeConfig.find(cfg => cfg.condition(npc, npcDef));
+        if (config) {
+          const name = config.nameFormatter(npcDef);
+          if (name) {
+            const feature = createMarkerFeature(
+              [npc.x + 512.5, npc.y + 512.5],
+              config.icon,
+              name,
+              config.category
+            );
+            addNPCToLayer(feature, npc.mapLevel, config.category);
+          }
+        }
+      });
+
+      updateMarkerCounts();
+      applyFilterStatesToLayer();
+
+      setTimeout(() => {
+        isLoading.value = false;
+        map.resize();
+      }, 500);
+
+    }, { immediate: true });
   })
 })
 
