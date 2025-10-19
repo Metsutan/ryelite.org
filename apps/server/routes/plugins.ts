@@ -6,8 +6,8 @@ type CacheEntry<T = any> = { data: T; expiresAt: number; etag?: string };
 const cache = new Map<string, CacheEntry>();
 
 // Config
-const GITHUB_REPO_OWNER = 'ash-of-the-meadow';
-const GITHUB_REPO_NAME = 'rl-plugin-hub';
+const GITHUB_REPO_OWNER = 'Highl1te';
+const GITHUB_REPO_NAME = 'Plugin-Hub';
 const GITHUB_API_BASE = 'https://api.github.com';
 const MANIFEST_TTL_MS = 5 * 60 * 1000; // 5 minutes for manifest freshness
 const ASSET_TTL_MS = Number.POSITIVE_INFINITY; // cache plugin assets indefinitely (server-side)
