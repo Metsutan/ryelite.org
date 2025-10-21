@@ -32,11 +32,17 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "concurrently": "^9.1.2",
-    "typescript": "~5.8.0"
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=22.16.0",
     "yarn": ">=4.0.0"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@vue/compiler-sfc": "^3.5.22",
+    "maplibre-gl": "^5.9.0",
+    "vue": "^3.5.22"
+  }
 }

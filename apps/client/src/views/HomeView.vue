@@ -14,9 +14,9 @@ onMounted(() => {
     mac: '',
     unknown: ''
   };
-
+  
   // Obtain Release Information from Github API
-  fetch('https://api.github.com/repos/HighL1te/HighLiteDesktop/releases/latest')
+  fetch('https://api.github.com/repos/ash-of-the-meadow/RyeliteDesktop/releases/latest')
     .then(response => response.json())
     .then(data => {
       // Loop through assets and find the latest release for each OS
@@ -32,11 +32,11 @@ onMounted(() => {
         }
       });
 
-      releaseAssets.unknown = "https://github.com/HighL1te/HighLiteDesktop/releases/latest";
+      releaseAssets.unknown = "https://github.com/ash-of-the-meadow/RyeliteDesktop/releases/latest";
     })
     .catch(error => console.error('Error fetching release info:', error));
 
-    fetch('https://api.github.com/repos/HighL1te/HighLiteDesktop/releases')
+    fetch('https://api.github.com/repos/ash-of-the-meadow/RyeliteDesktop/releases')
     .then(response => response.json())
     .then(data => {
       // For each release, get the number of downloads for each .exe, .AppImage, and .dmg
@@ -62,7 +62,7 @@ onMounted(() => {
 
   if (contributeButton) {
     contributeButton.addEventListener('click', () => {
-      window.open('https://github.com/HighL1te/HighLiteDesktop', '_blank');
+      window.open('https://github.com/ash-of-the-meadow/RyeliteDesktop', '_blank');
     });
   }
   if (downloadButton) {
